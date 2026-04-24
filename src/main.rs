@@ -1,7 +1,5 @@
 use anyhow::Result;
-use cairo::{Context, Format, ImageSurface};
 use log::warn;
-use pango::FontDescription;
 use pixels::wgpu::TextureFormat;
 use pixels::{Pixels, PixelsBuilder, SurfaceTexture};
 use shared_structures::SharedRingBuffer;
@@ -17,8 +15,11 @@ use tao::{
     window::{WindowBuilder, WindowId},
 };
 use xbar_core::{
-    AppState, BarConfig, Color, ShapeStyle, ThemeMode, colors_for_theme, draw_bar,
-    initialize_logging, spawn_shared_eventfd_notifier,
+    AppState, BarConfig, Color, ShapeStyle, ThemeMode,
+    cairo::{self, Context, Format, ImageSurface},
+    colors_for_theme, draw_bar, initialize_logging,
+    pango::FontDescription,
+    spawn_shared_eventfd_notifier,
 };
 
 fn tuned_colors_for_theme(mode: ThemeMode) -> xbar_core::Colors {
